@@ -1,2 +1,2 @@
 # TrailCurrentTouchScreenControl
-Visit the Wiki for documentation.
+Visit the [Wiki](!https://github.com/davidrfloydii/TrailCurrentTouchScreenControl/wiki) for documentation.
