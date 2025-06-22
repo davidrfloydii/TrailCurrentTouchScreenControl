@@ -8,21 +8,24 @@
 #include "canHelper.h"
 #include "ui/screens.h"
 #define CURRENT_VERSION "0.0.2"
+// Intervals are critical for balancing status changes with the desired framerate.
+// This directly coorelates to how "responsive" the touch screen interface is.
+// Set interval for lvgl updates
 unsigned long lvStartMillis;
 unsigned long lvCurrentMillis;
 const unsigned long lvPeriod = 5;
-
+// Set interfal for how frequently device status updates should occur
 unsigned long deviceStatusStartMillis;
 unsigned long deviceStatusCurrentMillis;
 const unsigned long deviceStatusPeriod = 33;
-
+// Set interval for polling the CAN Bus for messages
 unsigned long canStartMillis;
 unsigned long canCurrentMillis;
 const unsigned long canStatusPeriod = 100;
-
+// Set interval for registering touch events
 unsigned long touchCurrentMillis;
 const unsigned long touchStatusPeriod = 60000;
-
+// Set basic variables to default states and initialize the UI.
 void setup() {
   Serial.begin(115200);
   canHelper::setupCan();
@@ -41,7 +44,7 @@ void setup() {
   set_var_screen_timeout_value(1);
   touchStartMillis = millis();
 }
-
+// In the loop we check for touch events, update lvgl, get CAN Bus messages, and update the UI.
 void loop() {
   lvCurrentMillis = millis();
   deviceStatusCurrentMillis = millis();
